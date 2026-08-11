@@ -1,0 +1,51 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'Masters Auction Leaderboard' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Live Masters Tournament auction leaderboard with real-time payout tracking" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-masters-green text-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <div class="text-2xl">⛳</div>
+            <div>
+              <h1 class="text-lg font-bold leading-tight">Masters Auction</h1>
+              <p class="text-masters-gold text-xs font-medium">Live Leaderboard</p>
+            </div>
+          </a>
+          <div id="connection-status" class="flex items-center gap-2 text-sm">
+            <span class="live-dot"></span>
+            <span class="text-green-200">Live</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-masters-green-dark text-green-200 text-center py-4 text-xs mt-8">
+      <p>ES Alumni Masters Auction</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+name = "masters-auction"
+main = "src/index.ts"
+compatibility_date = "2024-06-01"
+
+# Custom Domain
+routes = [
+  { pattern = "masters.samlikessports.com", custom_domain = true }
+]
+
+[assets]
+directory = "./frontend/dist"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "masters-auction-db"
+database_id = "74722455-987f-42b6-97c6-564a5bd71ae9"
+migrations_dir = "migrations"
+
+# Durable Objects
+[durable_objects]
+bindings = [
+  { name = "LIVE_UPDATES", class_name = "LiveUpdates" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["LiveUpdates"]
+
+# Queue Producer
+[[queues.producers]]
+queue = "payout-calculations"
+binding = "PAYOUT_QUEUE"
+
+# Queue Consumer
+[[queues.consumers]]
+queue = "payout-calculations"
+max_batch_size = 1
+max_retries = 3
+
+[placement]
+mode = "smart"
+
+[observability]
+enabled = true
+
+[vars]
+GOLF_DATA_SOURCE = "espn"
