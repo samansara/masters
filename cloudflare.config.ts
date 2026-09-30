@@ -11,6 +11,8 @@ export default defineConfig(({ mode }) => {
 			name: workerName,
 			compatibilityDate: "2024-06-01",
 			entrypoint: "src/index.ts",
+			workersDev: false,
+			previewUrls: false,
 			placement: { mode: "smart" },
 			observability: { enabled: true },
 			...(staging ? {} : { domains: ["masters.samlikessports.com"] }),

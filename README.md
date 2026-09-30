@@ -103,6 +103,8 @@ This repository has two long-lived branches. `staging` deploys the `masters-auct
 Worker; `main` deploys the `masters-auction` production Worker. Promote a validated
 staging commit to `main` when ready. The workers use separate D1 databases, Queues,
 and Durable Object namespaces. The staging Worker does not use the production domain.
+Both Workers have their `workers.dev` routes disabled. Attach the staging custom
+domain with Cloudflare Access protection before opening the staging admin UI.
 
 Workers Builds should run `npm run build:staging` followed by
 `npx cf deploy --mode staging` for `staging`. Production should run
