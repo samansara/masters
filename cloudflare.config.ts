@@ -15,7 +15,9 @@ export default defineConfig(({ mode }) => {
 			previewUrls: false,
 			placement: { mode: "smart" },
 			observability: { enabled: true },
-			...(staging ? {} : { domains: ["masters.samlikessports.com"] }),
+			domains: [
+				staging ? "masters-staging.samlikessports.com" : "masters.samlikessports.com",
+			],
 			triggers: [
 				triggers.queue({ name: queueName, maxBatchSize: 1, maxRetries: 3 }),
 			],
