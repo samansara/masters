@@ -9,6 +9,7 @@ frontend/.astro/
 
 # Wrangler / Cloudflare local state
 .wrangler/
+.cloudflare/
 .dev.vars
 .dev.vars.*
 

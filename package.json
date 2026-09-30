@@ -2,20 +2,26 @@
   "name": "masters-auction",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "cf dev",
     "dev:frontend": "cd frontend && npm run dev",
     "build:frontend": "cd frontend && npm run build",
-    "deploy": "npm run build:frontend && wrangler deploy",
-    "db:migrate": "wrangler d1 migrations apply masters-auction-db --local",
-    "db:migrate:prod": "wrangler d1 migrations apply masters-auction-db --remote"
+    "build": "npm run build:frontend && cf build",
+    "build:staging": "npm run build:frontend && cf build --mode staging",
+    "deploy": "npm run build:frontend && cf deploy",
+    "deploy:staging": "npm run build:frontend && cf deploy --mode staging",
+    "db:migrate": "cf d1 migrations apply 74722455-987f-42b6-97c6-564a5bd71ae9 --local",
+    "db:migrate:prod": "cf d1 migrations apply 74722455-987f-42b6-97c6-564a5bd71ae9",
+    "db:migrate:staging": "cf d1 migrations apply 60088837-cdb8-4677-ab26-dddf4e5ad2f7"
   },
   "dependencies": {
     "hono": "^4.4.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260804.1",
+    "cf": "1.0.0-beta.5",
     "typescript": "^5.5.0",
-    "wrangler": "^4.83.0"
+    "wrangler": "4.143.0"
   }
 }
